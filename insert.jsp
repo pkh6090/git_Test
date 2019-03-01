@@ -22,12 +22,13 @@
 	else if(!Pattern.matches("^[0-9]*$", regdate)) out.println("날짜 항목이 숫자형식이 아닙니다.");
  
 	if(content == "" ||content == null) out.println("content가 null입니다.");
+
 	
 	try {		 
 	     String driverName = "oracle.jdbc.driver.OracleDriver"; //데이터베이스에 접속하기위한 드라이버를 로드합니다.	 
 	     String url = "jdbc:oracle:thin:@localhost:1521:XE";            //접속 URL정보와 포트번호(oracle포트), sid(oracle버전)	 	 
 	     Class.forName(driverName);
-	     Connection con = DriverManager.getConnection(url,"sys","ekzmskdlxm13");    // getCo... : 계정정보 url, id, pw
+	     Connection con = DriverManager.getConnection(url,"board","ekzmskdlxm13");    // getCo... : 계정정보 url, id, pw
 	     out.println("Oracle 데이터베이스 db에 성공적으로 접속했습니다");
 	     con.close();
 	 
