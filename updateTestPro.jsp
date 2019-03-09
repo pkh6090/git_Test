@@ -8,14 +8,14 @@
 <%
   String id= request.getParameter("id");
   String passwd= request.getParameter("passwd");
-  String name= request.getParameter("name");
+  String comt= request.getParameter("comt");
 
   Connection conn=null;
   PreparedStatement pstmt=null;
   ResultSet rs=null;
 
   try{
-	String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
+	String jdbcUrl="jdbc:mysql://192.168.25.44:3306/basicjsp";
     String dbId="jspid";
     String dbPass="jsppass";
 	 
@@ -31,9 +31,9 @@
 		String rId=rs.getString("id");
 		String rPasswd=rs.getString("passwd");
       if(id.equals(rId) && passwd.equals(rPasswd)){
-	     sql= "update member2 set name= ?  where id= ? ";
+	     sql= "update member2 set comt= ?  where id= ? ";
 	     pstmt=conn.prepareStatement(sql);
-	     pstmt.setString(1,name);
+	     pstmt.setString(1,comt);
 	     pstmt.setString(2,id);
 	     pstmt.executeUpdate();	   
 %>
@@ -43,6 +43,7 @@
 </head>
 <body>
   member 테이블의 레코드를 수정했습니다.
+  <input type="button" value="목록으로" onClick="location.href='selectTest.jsp'">
 </body>
 </html>
 <%
