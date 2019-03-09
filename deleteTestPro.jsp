@@ -14,7 +14,7 @@
   ResultSet rs=null;
 
   try{
-	String jdbcUrl="jdbc:mysql://localhost:3306/basicjsp";
+	String jdbcUrl="jdbc:mysql://192.168.25.44:3306/basicjsp";
     String dbId="jspid";
     String dbPass="jsppass";
 	 
@@ -41,6 +41,7 @@
 </head>
 <body>
   member 테이블의 레코드를 삭제했습니다.
+  <input type="button" value="목록으로" onClick="location.href='selectTest.jsp'">
 </body>
 </html>
 <%
