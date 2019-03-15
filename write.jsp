@@ -1,48 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"  pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+
+
+<script language="javascript">  // 자바 스크립트 시작
+
+function writeCheck()
+  {
+   var form = document.writeform;
+   
+   if( !form.name.value )   // form 에 있는 name 값이 없을 때
+   {
+    alert( "이름을 적어주세요" ); // 경고창 띄움
+    form.name.focus();   // form 에 있는 name 위치로 커서가 이동함 
+    return;
+   }
+   
+   if( !form.password.value )
+   {
+    alert( "비밀번호를 적어주세요" );
+    form.password.focus();
+    return;
+   }
+   
+  if( !form.title.value )
+   {
+    alert( "제목을 적어주세요" );
+    form.title.focus();
+    return;
+   }
+ 
+  if( !form.memo.value )
+   {
+    alert( "내용을 적어주세요" );
+    form.memo.focus();
+    return;
+   }
+ 
+  form.submit();
+  }
+ </script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>인터넷 게시판 만들기 - 게시판 입력창 </title>
-</head>
-<body>
-	<form action="insert.jsp" method="post" onsubmit="return formCheck();">
-		제목 : <input type="text" name="title"/><br/>
-		작성자 : <input type="text" name="writer"/><br/>
-		내용 : <textarea rows="10" cols="20" name="content"></textarea><br>
-		날짜 : <input type="text" name="regdate"/><br/>
-		<input type="submit" value="제출"/>
-	</form>	     
-	<script>
-	function formCheck() {
-		var title = document.forms[0].title.value;    	     
-		var writer = document.forms[0].writer.value;
-		var content = document.forms[0].content.value;    	     
-		var regdate = document.forms[0].regdate.value;
-				
-	    if (title == null || title == ""){      
-	        alert('제목을 입력하세요');           
-	        document.forms[0].title.focus();    
-	        return false;                      
-	        }
-	    if (writer == null || writer == ""){      
-	        alert('작성자를 입력하세요');           
-	        document.forms[0].writer.focus();    
-	        return false;                      
-	        } 
-	    	    
-	    if (content == null ||  content == ""){
-	        alert('내용을 입력하세요'); 
-	        document.forms[0].content.focus();
-	        return false;
-	    }	     
-	    if (regdate == null || regdate == "" ){
-	        alert('날짜를 입력하세요');   
-	        document.forms[0].regdate.focus();
-	        return false;            
-	    }	
-	}
-		
-	</script>
+ <head>
+ <title>게시판</title>
+ </head>
+ <body>
+<table>
+<form name=writeform method=post action="write_ok.jsp"> <!-- 이 곳에 쓰인 값들을 post방식으로 write_ok.jsp으로 보냄  -->
+  <tr>
+   <td>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+     <tr>
+      <td></td>
+      <td>글쓰기</td>
+      <td></td>
+     </tr>
+    </table>
+   <table>
+     <tr>
+      <td>&nbsp;</td>
+      <td align="center">제목</td>
+      <td><input name="title" size="50" maxlength="100"></td>
+      <td>&nbsp;</td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="center">이름</td>
+      <td><input name="name" size="50" maxlength="50"></td>
+      <td>&nbsp;</td>
+     </tr>
+      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="center">비밀번호</td>
+      <td><input type="password" name="password" size="50" maxlength="50"></td>
+      <td>&nbsp;</td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
+     <tr>
+      <td>&nbsp;</td>
+      <td align="center">내용</td>
+      <td><textarea name="memo" cols="50" rows="13"></textarea></td>
+      <td>&nbsp;</td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
+     <tr height="1" bgcolor="#82B5DF"><td colspan="4"></td></tr>
+     <tr align="center">
+      <td>&nbsp;</td>
+      <td colspan="2"><input type=button value="등록" OnClick="javascript:writeCheck();"><!--등록시 writeCheck()함수로 이동하여 검사함 이상이 없을시 write_ok.jsp로 값을 보냄  -->
+       <input type=button value="취소" OnClick="javascript:history.back(-1)"><!--취소 버튼을 누르면 뒤로가기 코드 history.back(-1) 실행  -->
+      <td>&nbsp;</td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+  </form>
+ </table>
 </body>
-</html>
+ </html>
+
+
+
