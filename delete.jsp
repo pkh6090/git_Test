@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"  pageEncoding="EUC-KR"%>
 <script language = "javascript">  // 자바 스크립트 시작
 
 function deleteCheck() //비밀번호를 입력하지 않을시 경고창을 띄어줌
@@ -16,7 +15,7 @@ function deleteCheck() //비밀번호를 입력하지 않을시 경고창을 띄어줌
   }
  </script>
  <%
- 	int idx = Integer.parseInt(request.getParameter("idx")); //view.jsp에서 보낸 idx값을 저장함
+ 	int idx = Integer.parseInt(request.getParameter("idx")); //view.jsp에서 보낸 idx값을 저장함 어떤 번호의 게시물인지를 확인
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,13 +25,14 @@ function deleteCheck() //비밀번호를 입력하지 않을시 경고창을 띄어줌
  <body>
 <table>
 <form name=deleteform method=post action="delete_ok.jsp?idx=<%=idx%>">
+<%--table 안쪽에 form을 생성하고 delete_ok에 idx값을 포함해서 전송 --%>
   <tr>
    <td>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
-     <tr>
-      <td width="5"></td>
+     <tr style="background:url('img/table_mid.gif') repeat-x; text-align:center;">
+      <td width="5"><img src="img/table_left.gif" width="5" height="30" /></td>
       <td>삭제</td>
-      <td width="5"></td>
+      <td width="5"><img src="img/table_right.gif" width="5" height="30" /></td>
      </tr>
     </table>
    <table>

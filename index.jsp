@@ -1,64 +1,14 @@
-<%@page import="java.util.regex.Pattern"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"  pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÀÎÅÍ³Ý °Ô½ÃÆÇ ¸¸µé±â </title>
+<meta charset="UTF-8">
+<title>JSPìž…ë¬¸</title>
 </head>
-<% 
-	request.setCharacterEncoding("euc-kr");	
-
-    int idx = 1; 
-    String title = request.getParameter("title"); 
-    String writer = request.getParameter("writer"); 
-    String regdate = request.getParameter("regdate"); 
-    int count = 10000; 
-    String content = request.getParameter("content"); 
-
-	if(title == "" ||title == null) out.println("titleÀÌ nullÀÔ´Ï´Ù.");
- 
-	if(writer == "" ||writer == null)
-    out.println("»ç¿ëÀÚ Ç×¸ñÀÌ ºñ¾îÀÖ½À´Ï´Ù.");   
-	else if(!Pattern.matches("^[_0-9a-zA-Z-]+@[0-9a-zA-Z-]+(.[_0-9a-zA-Z-]+)*$", writer))
-    out.println("ÀÛ¼ºÀÚ Ç×¸ñÀÌ ÀÌ¸ÞÀÏ Çü½ÄÀÌ ¾Æ´Õ´Ï´Ù.");
- 
-	if(regdate == "" ||regdate == null)
-    out.println("³¯Â¥°¡ ºñ¾îÀÖ½À´Ï´Ù.");
-	else if(!Pattern.matches("^[0-9]*$", regdate))
-    out.println("³¯Â¥ Ç×¸ñÀÌ ¼ýÀÚÇü½ÄÀÌ ¾Æ´Õ´Ï´Ù.");
- 
-	if(content == "" ||content == null) out.println("content°¡ nullÀÔ´Ï´Ù.");
-
-
-%>
-
-
 <body>
-<h1>°Ô½ÃÆÇ ¸ñ·Ï</h1>
-	<table>		
-		<tr>
-			<th>¹øÈ£</th>
-			<th>Á¦¸ñ</th>
-			<th>ÀÛ¼ºÀÚ</th>
-			<th>³¯Â¥</th>
-			<th>Á¶È¸¼ö</th>		
-		</tr>	
-		<tr>
-    		<td><%=idx %></td>                 
-     		<td><%=title %></td>
-       		<td><%=writer %></td>
-       		<td><%=regdate %></td>
-       		<td><%=count %></td>   
-		</tr>
-		<tr>
-			<th>1</th>
-			<th>ÀÎÅÍ³Ý °Ô½ÃÆÇ ¸¸µé±â</th>
-			<th>¹Ú°æÈÆ</th>
-			<th>2019.02.26</th>
-			<th>12</th>		
-		</tr>
-	</table>
-	<a href="write.jsp">±Û¾²±â</a>
+  <h2>JSPìž…ë¬¸</h2>
+  <hr/>
+  <%= "ì²˜ìŒìœ¼ë¡œ ìž‘ì„±í•˜ëŠ” JSP íŽ˜ì´ì§€ë‹¤"%>
 </body>
 </html>

@@ -1,14 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<script language="javascript">  // 자바 스크립트 시작
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.sql.*"%> <%--SQL문을 이용하기 위한 import --%>
+<script language = "javascript"> // 자바 스크립트 시작
 
-function writeCheck()
+function replyCheck()
   {
-   var form = document.writeform;
+   var form = document.replyform;
    
    if( !form.name.value )   // form 에 있는 name 값이 없을 때
    {
     alert( "이름을 적어주세요" ); // 경고창 띄움
-    form.name.focus();   // form 에 있는 name 위치로 커서가 이동함 
+    form.name.focus();   // form 에 있는 name 위치로 이동
     return;
    }
    
@@ -34,8 +36,38 @@ function writeCheck()
    }
  
   form.submit();
-  }
- </script>
+  } 
+</script>
+<%
+ 	int idx = Integer.parseInt(request.getParameter("idx"));
+ 	Class.forName("com.mysql.jdbc.Driver");
+	String url = "jdbc:mysql://localhost:3306/basicjsp";
+	String id = "jspid";
+	String pass = "jsppass";
+	String title = "";
+	
+	try {
+		
+		
+		Connection conn = DriverManager.getConnection(url,id,pass);
+		Statement stmt = conn.createStatement();
+
+		
+		String sql = "SELECT TITLE FROM board1 WHERE NUM=" + idx;
+		ResultSet rs = stmt.executeQuery(sql);
+
+ 		if(rs.next()){
+			title = rs.getString(1);
+ 		}
+			
+	rs.close();
+	stmt.close();
+	conn.close();
+ 	
+} catch(SQLException e) {
+
+} //view.jsp에서 보낸 idx(num)값을 SQL문을 이용해 idx값에 있는 title을 받아온다.
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,13 +76,14 @@ function writeCheck()
  </head>
  <body>
 <table>
-<form name=writeform method=post action="write_ok.jsp"> <!-- 이 곳에 쓰인 값들을 post방식으로 write_ok.jsp으로 보냄  -->
+<form name=replyform method=post action="reply_ok.jsp?idx=<%=idx%>">
+<%--replys_ok.jsp에 GET방식으로 idx를 추가해서 전송한다. --%>
   <tr>
    <td>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
      <tr style="background:url('img/table_mid.gif') repeat-x; text-align:center;">
       <td width="5"><img src="img/table_left.gif" width="5" height="30" /></td>
-      <td>글쓰기</td>
+      <td>답글</td>
       <td width="5"><img src="img/table_right.gif" width="5" height="30" /></td>
      </tr>
     </table>
@@ -58,7 +91,7 @@ function writeCheck()
      <tr>
       <td>&nbsp;</td>
       <td align="center">제목</td>
-      <td><input name="title" size="50" maxlength="100"></td>
+      <td><input name="title" size="50" maxlength="100" value="<%=title%>>"></td><%--제목에서 받아온 title을 입력 --%>
       <td>&nbsp;</td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
@@ -86,17 +119,16 @@ function writeCheck()
      <tr height="1" bgcolor="#82B5DF"><td colspan="4"></td></tr>
      <tr align="center">
       <td>&nbsp;</td>
-      <td colspan="2"><input type=button value="등록" OnClick="javascript:writeCheck();"><!--등록시 writeCheck()함수로 이동하여 검사함 이상이 없을시 write_ok.jsp로 값을 보냄  -->
-       <input type=button value="취소" OnClick="javascript:history.back(-1)"><!--취소 버튼을 누르면 뒤로가기 코드 history.back(-1) 실행  -->
+      <td colspan="2"><input type=button value="등록" OnClick="javascript:replyCheck();"> 
+      <input type=button value="취소" OnClick="javascript:history.back(-1)">
       <td>&nbsp;</td>
      </tr>
     </table>
    </td>
   </tr>
-  </form>
  </table>
-</body>
- </html>
+</body> 
+</html>
 
 
 

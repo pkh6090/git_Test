@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="java.sql.*"%>  
+<%@ page import="java.sql.*"%><%--SQL문을 사용하기 위해 java.sql.*을 import --%>  
 			
 <%
-	request.setCharacterEncoding("euc-kr");
+	request.setCharacterEncoding("euc-kr"); //파라미터값을 한글로 받아옴
 
-	Class.forName("com.mysql.jdbc.Driver");
+	Class.forName("com.mysql.jdbc.Driver"); //데이터베이스를 연결함
 	
-	String url = "jdbc:mysql://192.168.25.44:3306/basicjsp";
+	String url = "jdbc:mysql://localhost:3306/basicjsp";
 	String id = "jspid";
 	String pass = "jsppass";
 	String password = null;
@@ -25,7 +25,7 @@
 		 if(rs.next()){
 				password = rs.getString(1); //데이터베이스에서 입력한 패스워드에 값
 		 }
-		 
+		 //passw는 delete에서 입력한 값 password는 데이터베이스에 있는 값 이 값들을 비교함
 		 if(password.equals(passw)) { //delete.jsp에서 입력한 비밀번호와 값이 같은경우 실행
 			   			
 			sql = "DELETE FROM board1 WHERE NUM=" + idx;	
@@ -44,7 +44,7 @@
 		 } else { //비밀번호가 틀렸을 경우 실행
 %>
 			<script language=javascript>
-			 self.window.alert("비밀번호를 틀렸습니다.");
+			 self.window.alert("비밀번호가 틀렸습니다.");
 				location.href="javascript:history.back()";
 			</script>
 <%		
